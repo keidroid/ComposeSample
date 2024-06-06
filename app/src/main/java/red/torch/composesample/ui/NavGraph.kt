@@ -43,11 +43,11 @@ fun NavGraph(
         composable(
             "detail/{dogId}",
             arguments =
-                listOf(
-                    navArgument("dogId") {
-                        type = NavType.IntType
-                    },
-                ),
+            listOf(
+                navArgument("dogId") {
+                    type = NavType.IntType
+                },
+            ),
         ) {
             val dogId = it.arguments!!.getInt("dogId")
             DogDetailScreen(navController, dogId, dogDetailViewModel)

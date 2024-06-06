@@ -50,9 +50,9 @@ fun DogListScreen(
         dogListInfoState.value?.also { dogListInfo ->
             LazyColumn(
                 modifier =
-                    Modifier
-                        .fillMaxSize()
-                        .background(MaterialTheme.colors.background),
+                Modifier
+                    .fillMaxSize()
+                    .background(MaterialTheme.colors.background),
             ) {
                 item {
                     Spacer(Modifier.height(4.dp))

@@ -46,18 +46,18 @@ fun DogDetailHeaderSection(
             model = thumbnailUrl,
             contentDescription = null,
             modifier =
-                Modifier
-                    .fillMaxWidth()
-                    .background(colors.background),
+            Modifier
+                .fillMaxWidth()
+                .background(colors.background),
             contentScale = ContentScale.Crop,
         )
         Box(
             modifier =
-                Modifier
-                    .padding(16.dp)
-                    .clip(CircleShape)
-                    .background(Color.Black.copy(0.25f))
-                    .clickable { onClickBack() },
+            Modifier
+                .padding(16.dp)
+                .clip(CircleShape)
+                .background(Color.Black.copy(0.25f))
+                .clickable { onClickBack() },
         ) {
             Image(
                 painter = painterResource(R.drawable.ic_baseline_arrow_back_24),

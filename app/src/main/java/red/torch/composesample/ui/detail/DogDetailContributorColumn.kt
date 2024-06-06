@@ -59,9 +59,9 @@ fun DogDetailContributorColumn(
             model = contributorInfo.thumbnailUrl,
             contentDescription = null,
             modifier =
-                Modifier
-                    .size(thumbnailSize)
-                    .clip(CircleShape),
+            Modifier
+                .size(thumbnailSize)
+                .clip(CircleShape),
             contentScale = ContentScale.Crop,
             loading = {
                 Box(contentAlignment = Alignment.Center) {

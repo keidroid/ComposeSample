@@ -28,23 +28,23 @@ import javax.inject.Inject
 
 @HiltViewModel
 class DogListViewModel
-    @Inject
-    constructor(
-        private val dogRepository: DogRepository,
-    ) : ViewModel() {
-        private val _dogListInfo: MutableLiveData<DogListInfo> = MutableLiveData()
-        val dogListInfo: LiveData<DogListInfo>
-            get() = _dogListInfo
+@Inject
+constructor(
+    private val dogRepository: DogRepository,
+) : ViewModel() {
+    private val _dogListInfo: MutableLiveData<DogListInfo> = MutableLiveData()
+    val dogListInfo: LiveData<DogListInfo>
+        get() = _dogListInfo
 
-        fun fetchDogList() {
-            viewModelScope.launch {
-                when (val result = dogRepository.getList()) {
-                    is RepoResult.Success -> {
-                        _dogListInfo.value = result.data
-                    }
-
-                    is RepoResult.Error -> Unit
+    fun fetchDogList() {
+        viewModelScope.launch {
+            when (val result = dogRepository.getList()) {
+                is RepoResult.Success -> {
+                    _dogListInfo.value = result.data
                 }
+
+                is RepoResult.Error -> Unit
             }
         }
     }
+}

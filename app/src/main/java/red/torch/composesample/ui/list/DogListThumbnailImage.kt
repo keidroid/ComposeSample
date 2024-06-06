@@ -43,9 +43,9 @@ fun DogListThumbnailImage(
         model = url,
         contentDescription = null,
         modifier =
-            Modifier
-                .size(thumbnailSize)
-                .background(colors.background),
+        Modifier
+            .size(thumbnailSize)
+            .background(colors.background),
         contentScale = ContentScale.Crop,
         loading = {
             Box(contentAlignment = Alignment.Center) {
