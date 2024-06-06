@@ -32,10 +32,13 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import dev.chrisbanes.accompanist.glide.GlideImage
+import com.bumptech.glide.integration.compose.CrossFade
+import com.bumptech.glide.integration.compose.ExperimentalGlideComposeApi
+import com.bumptech.glide.integration.compose.GlideImage
 import red.torch.composesample.R
 import red.torch.composesample.ui.theme.MyTheme
 
+@OptIn(ExperimentalGlideComposeApi::class)
 @Composable
 fun DogDetailHeaderSection(
     thumbnailUrl: String,
@@ -43,25 +46,27 @@ fun DogDetailHeaderSection(
 ) {
     Box {
         GlideImage(
-            data = thumbnailUrl,
+            model = thumbnailUrl,
             contentDescription = null,
-            fadeIn = false,
-            modifier = Modifier
-                .fillMaxWidth()
-                .background(colors.background),
+            modifier =
+                Modifier
+                    .fillMaxWidth()
+                    .background(colors.background),
             contentScale = ContentScale.Crop,
+            transition = CrossFade,
         )
         Box(
-            modifier = Modifier
-                .padding(16.dp)
-                .clip(CircleShape)
-                .background(Color.Black.copy(0.25f))
-                .clickable { onClickBack() }
+            modifier =
+                Modifier
+                    .padding(16.dp)
+                    .clip(CircleShape)
+                    .background(Color.Black.copy(0.25f))
+                    .clickable { onClickBack() },
         ) {
             Image(
                 painter = painterResource(R.drawable.ic_baseline_arrow_back_24),
                 contentDescription = stringResource(R.string.common_back),
-                modifier = Modifier.padding(8.dp)
+                modifier = Modifier.padding(8.dp),
             )
         }
     }

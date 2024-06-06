@@ -27,34 +27,37 @@ import red.torch.composesample.data.repository.DogRepository
 import javax.inject.Inject
 
 @HiltViewModel
-class DogDetailViewModel @Inject constructor(
-    private val dogRepository: DogRepository,
-) : ViewModel() {
+class DogDetailViewModel
+    @Inject
+    constructor(
+        private val dogRepository: DogRepository,
+    ) : ViewModel() {
+        private val _dogDetailInfo: MutableLiveData<DogDetailInfo> = MutableLiveData()
+        val dogDetailInfo: LiveData<DogDetailInfo>
+            get() = _dogDetailInfo
 
-    private val _dogDetailInfo: MutableLiveData<DogDetailInfo> = MutableLiveData()
-    val dogDetailInfo: LiveData<DogDetailInfo>
-        get() = _dogDetailInfo
+        private val _isFavorite: MutableLiveData<Boolean> = MutableLiveData()
+        val isFavorite: LiveData<Boolean>
+            get() = _isFavorite
 
-    private val _isFavorite: MutableLiveData<Boolean> = MutableLiveData()
-    val isFavorite: LiveData<Boolean>
-        get() = _isFavorite
+        fun fetchDogDetail(dogId: Int) {
+            viewModelScope.launch {
+                when (val result = dogRepository.getDetail(dogId)) {
+                    is RepoResult.Success -> {
+                        _dogDetailInfo.value = result.data
+                    }
 
-    fun fetchDogDetail(dogId: Int) {
-        viewModelScope.launch {
-            when (val result = dogRepository.getDetail(dogId)) {
-                is RepoResult.Success -> {
-                    _dogDetailInfo.value = result.data
+                    is RepoResult.Error -> Unit
                 }
             }
         }
-    }
 
-    fun toggleFavorite() {
-        val currentIsFavorite = _isFavorite.value == true
-        _isFavorite.value = !currentIsFavorite
-    }
+        fun toggleFavorite() {
+            val currentIsFavorite = _isFavorite.value == true
+            _isFavorite.value = !currentIsFavorite
+        }
 
-    fun inquiry() {
-        // TODO :
+        fun inquiry() {
+            // TODO :
+        }
     }
-}

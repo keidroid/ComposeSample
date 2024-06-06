@@ -32,7 +32,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
-import androidx.navigation.compose.navigate
 import red.torch.composesample.ui.common.DogAdaptionTopAppBar
 import red.torch.composesample.viewmodel.DogListViewModel
 
@@ -40,21 +39,21 @@ import red.torch.composesample.viewmodel.DogListViewModel
 @Composable
 fun DogListScreen(
     navController: NavController,
-    viewModel: DogListViewModel = viewModel()
+    viewModel: DogListViewModel = viewModel(),
 ) {
     val dogListInfoState = viewModel.dogListInfo.observeAsState(null)
     viewModel.fetchDogList()
 
     Scaffold(
-        topBar = { DogAdaptionTopAppBar() }
+        topBar = { DogAdaptionTopAppBar() },
     ) {
         dogListInfoState.value?.also { dogListInfo ->
             LazyColumn(
-                modifier = Modifier
-                    .fillMaxSize()
-                    .background(MaterialTheme.colors.background)
+                modifier =
+                    Modifier
+                        .fillMaxSize()
+                        .background(MaterialTheme.colors.background),
             ) {
-
                 item {
                     Spacer(Modifier.height(4.dp))
                     DogListHeaderSection(dogListInfo.target, dogListInfo.totalCount)

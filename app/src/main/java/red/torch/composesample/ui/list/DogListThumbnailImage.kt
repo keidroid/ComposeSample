@@ -15,52 +15,51 @@
  */
 package red.torch.composesample.ui.list
 
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.size
-import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.material.MaterialTheme.colors
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
-import dev.chrisbanes.accompanist.glide.GlideImage
-import red.torch.composesample.R
+import com.bumptech.glide.integration.compose.CrossFade
+import com.bumptech.glide.integration.compose.ExperimentalGlideComposeApi
+import com.bumptech.glide.integration.compose.GlideImage
 import red.torch.composesample.ui.theme.MyTheme
 
+@OptIn(ExperimentalGlideComposeApi::class)
 @Composable
 fun DogListThumbnailImage(
     url: String,
     thumbnailSize: Dp = 120.dp,
-    errorIconSize: Dp = 48.dp
+    errorIconSize: Dp = 48.dp,
 ) {
     GlideImage(
-        data = url,
+        model = url,
         contentDescription = null,
-        fadeIn = true,
-        modifier = Modifier
-            .size(thumbnailSize)
-            .background(colors.background),
+        modifier =
+            Modifier
+                .size(thumbnailSize)
+                .background(colors.background),
         contentScale = ContentScale.Crop,
-        loading = {
-            Box(contentAlignment = Alignment.Center) {
-                CircularProgressIndicator(Modifier.align(Alignment.Center))
-            }
-        },
-        error = {
-            Box(contentAlignment = Alignment.Center) {
-                Image(
-                    painterResource(R.drawable.ic_baseline_no_photography_24),
-                    contentDescription = null,
-                    modifier = Modifier.size(errorIconSize)
-                )
-            }
-        }
+        transition = CrossFade,
+// TODO:
+//        loading = {
+//            Box(contentAlignment = Alignment.Center) {
+//                CircularProgressIndicator(Modifier.align(Alignment.Center))
+//            }
+//        },
+//        failure = {
+//            Box(contentAlignment = Alignment.Center) {
+//                Image(
+//                    painterResource(R.drawable.ic_baseline_no_photography_24),
+//                    contentDescription = null,
+//                    modifier = Modifier.size(errorIconSize),
+//                )
+//            }
+//        },
     )
 }
 
