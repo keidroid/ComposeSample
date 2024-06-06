@@ -28,7 +28,7 @@ import javax.inject.Singleton
 class RepositoryModule {
     @Provides
     @Singleton
-    open fun provideDogRepository(): DogRepository {
+    fun provideDogRepository(): DogRepository {
         // Mock
         return DogRepositoryMock()
     }

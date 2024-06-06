@@ -57,7 +57,7 @@ data class DogListInfo(
     val groups: List<DogListGroup>
 ) {
     val totalCount: Int
-        get() = groups.sumBy { it.dogSimpleInfos.size }
+        get() = groups.sumOf { it.dogSimpleInfos.size }
 }
 
 data class DogListGroup(

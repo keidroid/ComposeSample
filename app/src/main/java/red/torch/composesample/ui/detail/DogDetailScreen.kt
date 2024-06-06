@@ -18,6 +18,7 @@ package red.torch.composesample.ui.detail
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.material.MaterialTheme.colors
@@ -40,10 +41,11 @@ fun DogDetailScreen(
     val dogDetailInfoState = viewModel.dogDetailInfo.observeAsState(null)
     viewModel.fetchDogDetail(dogId)
 
-    Scaffold {
+    Scaffold { paddingValues ->
         dogDetailInfoState.value?.also { dog ->
             LazyColumn(
                 modifier = Modifier
+                    .padding(paddingValues)
                     .fillMaxSize()
                     .background(colors.background)
             ) {
