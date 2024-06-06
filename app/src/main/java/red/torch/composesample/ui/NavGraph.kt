@@ -20,7 +20,6 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import androidx.navigation.compose.navArgument
 import androidx.navigation.compose.rememberNavController
 import red.torch.composesample.ui.detail.DogDetailScreen
 import red.torch.composesample.ui.list.DogListScreen
@@ -30,19 +29,19 @@ import red.torch.composesample.viewmodel.DogListViewModel
 @Composable
 fun NavGraph(
     dogListViewModel: DogListViewModel = viewModel(),
-    dogDetailViewModel: DogDetailViewModel = viewModel()
+    dogDetailViewModel: DogDetailViewModel = viewModel(),
 ) {
     val navController = rememberNavController()
 
     NavHost(navController, startDestination = "list") {
         composable(
-            "list"
+            "list",
         ) {
             DogListScreen(navController, dogListViewModel)
         }
         composable(
             "detail/{dogId}",
-            arguments = listOf(navArgument("dogId") { type = NavType.IntType })
+            arguments = listOf(avArgument("dogId") { type = NavType.IntType }),
         ) {
             val dogId = it.arguments!!.getInt("dogId")
             DogDetailScreen(navController, dogId, dogDetailViewModel)
