@@ -32,7 +32,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import coil.compose.AsyncImage
+import coil.compose.SubcomposeAsyncImage
 import red.torch.composesample.R
 import red.torch.composesample.ui.theme.MyTheme
 
@@ -42,7 +42,7 @@ fun DogDetailHeaderSection(
     onClickBack: () -> Unit,
 ) {
     Box {
-        AsyncImage(
+        SubcomposeAsyncImage(
             model = thumbnailUrl,
             contentDescription = null,
             modifier =
