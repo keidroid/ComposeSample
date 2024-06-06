@@ -24,19 +24,16 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
-import com.bumptech.glide.integration.compose.CrossFade
-import com.bumptech.glide.integration.compose.ExperimentalGlideComposeApi
-import com.bumptech.glide.integration.compose.GlideImage
+import coil.compose.AsyncImage
 import red.torch.composesample.ui.theme.MyTheme
 
-@OptIn(ExperimentalGlideComposeApi::class)
 @Composable
 fun DogListThumbnailImage(
     url: String,
     thumbnailSize: Dp = 120.dp,
     errorIconSize: Dp = 48.dp,
 ) {
-    GlideImage(
+    AsyncImage(
         model = url,
         contentDescription = null,
         modifier =
@@ -44,7 +41,6 @@ fun DogListThumbnailImage(
                 .size(thumbnailSize)
                 .background(colors.background),
         contentScale = ContentScale.Crop,
-        transition = CrossFade,
 // TODO:
 //        loading = {
 //            Box(contentAlignment = Alignment.Center) {

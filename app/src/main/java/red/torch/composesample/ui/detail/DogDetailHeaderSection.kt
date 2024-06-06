@@ -32,20 +32,17 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.bumptech.glide.integration.compose.CrossFade
-import com.bumptech.glide.integration.compose.ExperimentalGlideComposeApi
-import com.bumptech.glide.integration.compose.GlideImage
+import coil.compose.AsyncImage
 import red.torch.composesample.R
 import red.torch.composesample.ui.theme.MyTheme
 
-@OptIn(ExperimentalGlideComposeApi::class)
 @Composable
 fun DogDetailHeaderSection(
     thumbnailUrl: String,
     onClickBack: () -> Unit,
 ) {
     Box {
-        GlideImage(
+        AsyncImage(
             model = thumbnailUrl,
             contentDescription = null,
             modifier =
@@ -53,7 +50,6 @@ fun DogDetailHeaderSection(
                     .fillMaxWidth()
                     .background(colors.background),
             contentScale = ContentScale.Crop,
-            transition = CrossFade,
         )
         Box(
             modifier =

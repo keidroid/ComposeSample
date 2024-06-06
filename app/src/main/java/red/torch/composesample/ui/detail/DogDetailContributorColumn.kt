@@ -34,14 +34,11 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
-import com.bumptech.glide.integration.compose.CrossFade
-import com.bumptech.glide.integration.compose.ExperimentalGlideComposeApi
-import com.bumptech.glide.integration.compose.GlideImage
+import coil.compose.AsyncImage
 import red.torch.composesample.R
 import red.torch.composesample.data.repository.ContributorInfo
 import red.torch.composesample.ui.theme.MyTheme
 
-@OptIn(ExperimentalGlideComposeApi::class)
 @Composable
 fun DogDetailContributorColumn(
     contributorInfo: ContributorInfo,
@@ -53,7 +50,7 @@ fun DogDetailContributorColumn(
             .fillMaxWidth()
             .padding(vertical = 8.dp),
     ) {
-        GlideImage(
+        AsyncImage(
             model = contributorInfo.thumbnailUrl,
             contentDescription = null,
             modifier =
@@ -61,8 +58,8 @@ fun DogDetailContributorColumn(
                     .size(thumbnailSize)
                     .clip(CircleShape),
             contentScale = ContentScale.Crop,
-            transition = CrossFade,
 // TODO:
+//            transition = CrossFade,
 //            loading = {
 //                Box(contentAlignment = Alignment.Center) {
 //                    CircularProgressIndicator(Modifier.align(Alignment.Center))
